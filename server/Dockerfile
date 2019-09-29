@@ -2,14 +2,14 @@
 FROM node:12-alpine
 
 # Creating App Directory
-RUN mkdir -p /unrama/server
-WORKDIR /unrama/server
+RUN mkdir -p /app/server
+WORKDIR /app/server
 
-COPY package.json /unrama/server
+COPY package.json /app/server
 
 RUN npm install
 
-COPY . /unrama/server
+COPY . /app/server
 
 # Run final command to kick off server
 CMD ["npm", "run", "server"]
