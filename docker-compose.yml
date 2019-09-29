@@ -19,8 +19,9 @@ services:
 ##     docker-compose up --build -d server
 ## ----------------------------------------
   server:
-    build: 
-      context: ./server
+    build:
+      context: ./
+      dockerfile: ./server
     environment:
       # - APP_HOST=${API_HOST}
       - APP_SERVER_PORT=${APP_SERVER_PORT}
@@ -41,11 +42,13 @@ services:
 ##     docker-compose up --build -d client
 ## ----------------------------------------
   client:
-    build: 
-      context: ./client
+    build:
+      context: ./
+      dockerfile: ./client
     environment:
       - REACT_APP_PORT=${REACT_APP_PORT}
       - CHOKIDAR_USEPOLLING=true # help with watch events in VM (https://create-react-app.dev/docs/advanced-configuration)
+      - NODE_ENV=${NODE_ENV}
     ports:
       - ${REACT_APP_PORT}:${REACT_APP_PORT} # expose ports - HOST:CONTAINER
     volumes:
